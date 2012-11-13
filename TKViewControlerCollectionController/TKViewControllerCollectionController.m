@@ -52,19 +52,17 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 #pragma mark ViewController Containment
 
-- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index;
+- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
 {
     [self.collectionView performBatchUpdates:^{
         [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
         NSMutableArray *viewControllers = [_viewControllers mutableCopy];
         [viewControllers insertObject:viewController atIndex:index];
         _viewControllers = viewControllers;
-    } completion:^(BOOL finished) {
-
-    }];
+    } completion:completion];
 }
 
-- (void)deleteViewController:(UIViewController *)viewController;
+- (void)deleteViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
 {
     [self.collectionView performBatchUpdates:^{
         NSUInteger index = [_viewControllers indexOfObject:viewController];
@@ -72,9 +70,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
         NSMutableArray *viewControllers = [_viewControllers mutableCopy];
         [viewControllers removeObjectAtIndex:index];
         _viewControllers = viewControllers;
-    } completion:^(BOOL finished) {
-
-    }];
+    } completion:completion];
 }
 
 #pragma mark UIViewController
