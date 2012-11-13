@@ -10,6 +10,8 @@
 
 @interface TKViewControllerCollectionController : UICollectionViewController
 
+@property (nonatomic, assign) id <UICollectionViewDelegate> delegate;
+
 #pragma mark ViewController Containment
 
 @property (nonatomic, strong) NSArray *viewControllers;

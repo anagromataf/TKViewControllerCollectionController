@@ -142,11 +142,30 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
     cell.viewController = nil;
 }
 
-#pragma mark UICollectionViewDelegateFlowLayout
+#pragma mark Forwarding Delegate Calls
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)respondsToSelector:(SEL)aSelector;
 {
-    return self.view.bounds.size;
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
+    } else {
+        return [self.delegate respondsToSelector:aSelector];
+    }
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;
+{
+    return [super methodSignatureForSelector:aSelector];
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation
+{
+    SEL aSelector = [invocation selector];
+    
+    if ([self.delegate respondsToSelector:aSelector])
+        [invocation invokeWithTarget:self.delegate];
+    else
+        [self doesNotRecognizeSelector:aSelector];
 }
 
 @end

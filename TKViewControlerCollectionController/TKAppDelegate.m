@@ -17,6 +17,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;{return [[UITableViewCell alloc] init];}
 @end
 
+@interface TKAppDelegate () <UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@end
 
 @implementation TKAppDelegate
 
@@ -25,7 +28,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     TKViewControllerCollectionController *collection = [[TKViewControllerCollectionController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-
+    collection.delegate = self;
+    
     collection.viewControllers = @[
         [[TableViewController alloc] initWithStyle:UITableViewStyleGrouped],
         [[TableViewController alloc] initWithStyle:UITableViewStylePlain],
@@ -59,5 +63,11 @@
     return YES;
 }
 
+#pragma mark UICollectionViewDelegate (UICollectionViewDelegateFlowLayout)
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return self.window.rootViewController.view.bounds.size;
+}
 
 @end
