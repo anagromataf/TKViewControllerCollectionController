@@ -16,6 +16,7 @@
 		F661A6D01652C9B900366446 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F661A6CF1652C9B900366446 /* Default.png */; };
 		F661A6D21652C9B900366446 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F661A6D11652C9B900366446 /* Default@2x.png */; };
 		F661A6D41652C9B900366446 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F661A6D31652C9B900366446 /* Default-568h@2x.png */; };
+		F661A6EB1652F20500366446 /* TKViewControllerCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F661A6EA1652F20500366446 /* TKViewControllerCollectionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		F661A6CF1652C9B900366446 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F661A6D11652C9B900366446 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F661A6D31652C9B900366446 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F661A6E91652F20500366446 /* TKViewControllerCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKViewControllerCollectionController.h; sourceTree = "<group>"; };
+		F661A6EA1652F20500366446 /* TKViewControllerCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKViewControllerCollectionController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 			children = (
 				F661A6CC1652C9B900366446 /* TKAppDelegate.h */,
 				F661A6CD1652C9B900366446 /* TKAppDelegate.m */,
+				F661A6E91652F20500366446 /* TKViewControllerCollectionController.h */,
+				F661A6EA1652F20500366446 /* TKViewControllerCollectionController.m */,
 				F661A6C41652C9B900366446 /* Supporting Files */,
 			);
 			path = TKViewControlerCollectionController;
@@ -167,6 +172,7 @@
 			files = (
 				F661A6CA1652C9B900366446 /* main.m in Sources */,
 				F661A6CE1652C9B900366446 /* TKAppDelegate.m in Sources */,
+				F661A6EB1652F20500366446 /* TKViewControllerCollectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,7 @@
 				F661A6D91652C9B900366446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
