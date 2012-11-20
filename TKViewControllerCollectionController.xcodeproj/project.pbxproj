@@ -18,6 +18,7 @@
 		F66916C0165BC43D002948BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F66916B9165BC43D002948BB /* main.m */; };
 		F66916C4165BC47B002948BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F66916C2165BC47B002948BB /* InfoPlist.strings */; };
 		F66916C5165BC4EB002948BB /* TKViewControllerCollectionController-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F66916BA165BC43D002948BB /* TKViewControllerCollectionController-Info.plist */; };
+		F66916CB165BC8BE002948BB /* TKViewControllerCollectionController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F66916CA165BC8BE002948BB /* TKViewControllerCollectionController.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F66916BA165BC43D002948BB /* TKViewControllerCollectionController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "TKViewControllerCollectionController-Info.plist"; path = "TKViewControllerCollectionController/TKViewControllerCollectionController-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F66916BB165BC43D002948BB /* TKViewControllerCollectionController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TKViewControllerCollectionController-Prefix.pch"; path = "TKViewControllerCollectionController/TKViewControllerCollectionController-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		F66916C3165BC47B002948BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = TKViewControllerCollectionController/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		F66916CA165BC8BE002948BB /* TKViewControllerCollectionController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = TKViewControllerCollectionController.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		F661A6AE1652C9B900366446 = {
 			isa = PBXGroup;
 			children = (
+				F66916CA165BC8BE002948BB /* TKViewControllerCollectionController.podspec */,
 				F661A6C31652C9B900366446 /* TKViewControllerCollectionController */,
 				F661A6BC1652C9B900366446 /* Frameworks */,
 				F661A6BA1652C9B900366446 /* Products */,
@@ -163,6 +166,7 @@
 				F66916BE165BC43D002948BB /* Default@2x.png in Resources */,
 				F66916C5165BC4EB002948BB /* TKViewControllerCollectionController-Info.plist in Resources */,
 				F66916C4165BC47B002948BB /* InfoPlist.strings in Resources */,
+				F66916CB165BC8BE002948BB /* TKViewControllerCollectionController.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
