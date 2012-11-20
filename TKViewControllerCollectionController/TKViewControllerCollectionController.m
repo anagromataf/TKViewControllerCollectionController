@@ -1,6 +1,6 @@
 //
 //  TKViewControllerCollectionController.m
-//  TKViewControlerCollectionController
+//  TKViewControllerCollectionController
 //
 //  Created by Tobias Kräntzer on 13.11.12.
 //  Copyright (c) 2012 Tobias Kräntzer. All rights reserved.
@@ -9,6 +9,8 @@
 #import <objc/runtime.h>
 
 #import "TKViewControllerCollectionController.h"
+
+#define kTKViewControllerCollectionControllerCellReuseIdentifier @"kTKViewControllerCollectionControllerCellReuseIdentifier"
 
 #pragma mark -
 
@@ -31,7 +33,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 #pragma mark -
 
-@interface TKViewControllerCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface TKViewControllerCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
 
@@ -78,7 +80,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kTKViewControllerCollectionControllerCellReuseIdentifier];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
@@ -106,7 +108,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:kTKViewControllerCollectionControllerCellReuseIdentifier forIndexPath:indexPath];
     
     UIViewController *viewController = [self.viewControllers objectAtIndex:indexPath.row];
     cell.viewController = viewController;
@@ -151,7 +153,12 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector;
 {
-    return [super methodSignatureForSelector:aSelector];
+    NSMethodSignature *methodSignature = [super methodSignatureForSelector:aSelector];
+    if (methodSignature) {
+        return methodSignature;
+    } else {
+        return [(id)self.delegate methodSignatureForSelector:aSelector];
+    }
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation
