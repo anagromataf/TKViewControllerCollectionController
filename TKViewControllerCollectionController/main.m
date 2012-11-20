@@ -1,6 +1,6 @@
 //
 //  main.m
-//  TKViewControlerCollectionController
+//  TKViewControllerCollectionController
 //
 //  Created by Tobias Kräntzer on 13.11.12.
 //  Copyright (c) 2012 Tobias Kräntzer. All rights reserved.
