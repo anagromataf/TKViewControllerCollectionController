@@ -34,7 +34,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 #pragma mark -
 
 @interface TKViewControllerCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
-
+@property (nonatomic, assign) CGPoint scrollPositionBeforeRotation;
 @end
 
 @implementation TKViewControllerCollectionController
@@ -85,7 +85,16 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 {
+    self.scrollPositionBeforeRotation = CGPointMake(self.collectionView.contentOffset.x / self.collectionView.contentSize.width,
+                                      self.collectionView.contentOffset.y / self.collectionView.contentSize.height);
     [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+{
+    CGPoint contentOffset = CGPointMake(self.scrollPositionBeforeRotation.x * self.collectionView.contentSize.width,
+                                        self.scrollPositionBeforeRotation.y * self.collectionView.contentSize.height);
+    [self.collectionView setContentOffset:contentOffset animated:YES];
 }
 
 #pragma mark UICollectionViewDataSource

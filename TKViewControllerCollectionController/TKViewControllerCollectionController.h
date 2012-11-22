@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSArray *viewControllers;
 
-- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;;
+- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
 - (void)deleteViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
 
 @end

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = "TKViewControllerCollectionController"
-    s.version      = "0.1.1"
-    s.summary      = "A UIVIewController container using a UICollectionView for the layout of the views."
+    s.version      = "0.1.2"
+    s.summary      = "A UIViewController container using a UICollectionView for the layout of the views."
     s.homepage     = "https://github.com/anagromataf/TKViewControllerCollectionController"
     
     s.license      = {
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
         LICENSE
     }
     s.author              = { "Tobias Kräntzer" => "info@tobias-kraentzer.de" }
-    s.source              = { :git => "https://github.com/anagromataf/TKViewControllerCollectionController.git", :tag => "0.1.1" }
+    s.source              = { :git => "https://github.com/anagromataf/TKViewControllerCollectionController.git", :tag => "0.1.2" }
     
     s.platform            = :ios, '6.0'
     s.source_files        = 'TKViewControllerCollectionController/TKViewControllerCollectionController.{h,m}'
