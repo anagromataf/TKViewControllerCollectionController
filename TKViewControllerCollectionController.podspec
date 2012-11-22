@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = "TKViewControllerCollectionController"
     s.version      = "0.1.1"
-    s.summary      = "A UIVIewController container using a UICollectionView for the layout of the views."
+    s.summary      = "A UIViewController container using a UICollectionView for the layout of the views."
     s.homepage     = "https://github.com/anagromataf/TKViewControllerCollectionController"
     
     s.license      = {
