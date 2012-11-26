@@ -54,25 +54,66 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 #pragma mark ViewController Containment
 
-- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
+- (void)addViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
 {
+    return [self insertViewController:viewController atIndex:[self.viewControllers count] completion:completion];
+}
+
+- (void)insertViewController:(UIViewController *)viewController atIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
+{
+    [self prepareInsertionOfViewController:viewController atIndex:index];
     [self.collectionView performBatchUpdates:^{
         [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
         NSMutableArray *viewControllers = [_viewControllers mutableCopy];
         [viewControllers insertObject:viewController atIndex:index];
         _viewControllers = viewControllers;
+        [self finalizeInsertionOfViewController:viewController];
     } completion:completion];
 }
 
 - (void)deleteViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
 {
+    return [self deleteViewControllers:@[viewController] completion:completion];
+}
+
+- (void)deleteViewControllers:(NSArray *)viewControllersToDelete completion:(void (^)(BOOL finished))completion;
+{
+    [self prepareDeletionOfViewControllers:viewControllersToDelete];
     [self.collectionView performBatchUpdates:^{
-        NSUInteger index = [_viewControllers indexOfObject:viewController];
-        [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+        [viewControllersToDelete enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
+            NSUInteger index = [_viewControllers indexOfObject:viewController];
+            [indexPaths addObject:[NSIndexPath indexPathForItem:index inSection:0]];
+        }];
+        [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+        
         NSMutableArray *viewControllers = [_viewControllers mutableCopy];
-        [viewControllers removeObjectAtIndex:index];
+        [viewControllersToDelete enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
+            [viewControllers removeObject:viewController];
+        }];
         _viewControllers = viewControllers;
+        [self finalizeDeletionOfViewControllers:viewControllersToDelete];
     } completion:completion];
+}
+
+#pragma mark Responding Insertion Events
+
+- (void)prepareInsertionOfViewController:(UIViewController *)viewController atIndex:(NSUInteger)index;
+{
+}
+
+- (void)finalizeInsertionOfViewController:(UIViewController *)viewController;
+{
+}
+
+#pragma mark Responding Deletion Events
+
+- (void)prepareDeletionOfViewControllers:(NSArray *)viewControllers;
+{
+}
+
+- (void)finalizeDeletionOfViewControllers:(NSArray *)viewControllers;
+{
 }
 
 #pragma mark UIViewController
@@ -85,16 +126,7 @@ static const char * kTKViewControllerCollectionControllerCellKey = "kTKViewContr
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 {
-    self.scrollPositionBeforeRotation = CGPointMake(self.collectionView.contentOffset.x / self.collectionView.contentSize.width,
-                                      self.collectionView.contentOffset.y / self.collectionView.contentSize.height);
     [self.collectionView.collectionViewLayout invalidateLayout];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
-{
-    CGPoint contentOffset = CGPointMake(self.scrollPositionBeforeRotation.x * self.collectionView.contentSize.width,
-                                        self.scrollPositionBeforeRotation.y * self.collectionView.contentSize.height);
-    [self.collectionView setContentOffset:contentOffset animated:YES];
 }
 
 #pragma mark UICollectionViewDataSource

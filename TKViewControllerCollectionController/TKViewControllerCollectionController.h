@@ -12,11 +12,29 @@
 
 @property (nonatomic, assign) id <UICollectionViewDelegate> delegate;
 
-#pragma mark ViewController Containment
+#pragma mark UIViewController Containment
 
 @property (nonatomic, strong) NSArray *viewControllers;
 
-- (void)insertViewController:(UIViewController *)viewController anIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
+- (void)addViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
+- (void)insertViewController:(UIViewController *)viewController atIndex:(NSUInteger)index completion:(void (^)(BOOL finished))completion;
 - (void)deleteViewController:(UIViewController *)viewController completion:(void (^)(BOOL finished))completion;
+- (void)deleteViewControllers:(NSArray *)viewControllers completion:(void (^)(BOOL finished))completion;
+
+#pragma mark Customizing Insertion
+
+// The view controller collection calls this method before the batch update of the collection view.
+- (void)prepareInsertionOfViewController:(UIViewController *)viewController atIndex:(NSUInteger)index;
+
+// The view controller collection calls this method as the last step in the batch update of the collevtion view.
+- (void)finalizeInsertionOfViewController:(UIViewController *)viewController;
+
+#pragma mark Customizing Deletion
+
+// The view controller collection calls this method before the batch update of the collection view.
+- (void)prepareDeletionOfViewControllers:(NSArray *)viewControllers;
+
+// The view controller collection calls this method as the last step in the batch update of the collevtion view.
+- (void)finalizeDeletionOfViewControllers:(NSArray *)viewControllers;
 
 @end
